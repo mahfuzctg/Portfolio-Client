@@ -45,7 +45,10 @@ const HomeBanner = () => {
           </p>
 
           <p className="mt-4  font-bold text-base sm:text-xl md:text-2xl">
-            5+ <span className="text-gray-500">Years of Experience</span>
+            20+{" "}
+            <span className="text-gray-500">
+              successful projects and counting.
+            </span>
           </p>
         </div>
 

@@ -11,7 +11,7 @@ const Layout: React.FC = () => {
       </div>
 
       {/* Main content */}
-      <div className=" ml-[5%] p-4 lg:p-8">
+      <div className=" ml-[5%] ">
         <main>
           <Outlet /> {/* This renders the child routes */}
         </main>

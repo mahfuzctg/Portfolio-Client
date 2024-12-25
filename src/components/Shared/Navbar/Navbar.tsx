@@ -5,7 +5,7 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-transparent fixed top-0 left-0 h-full w-[5%] z-50 shadow-lg">
+    <nav className=" fixed  h-full w-[5%]  shadow-lg">
       <div className="flex flex-col justify-center items-center h-full px-6 py-4">
         {/* Mobile Menu Button */}
         <div className="flex md:hidden absolute top-4 left-4">
@@ -72,6 +72,26 @@ const Navbar: React.FC = () => {
             Projects
           </NavLink>
           <NavLink
+            to="/blogs"
+            className={({ isActive }) =>
+              isActive
+                ? "text-green-600 font-medium hover:text-green-500 transition-colors"
+                : "text-gray-700 hover:text-green-600 transition-colors"
+            }
+          >
+            Blogs
+          </NavLink>
+          <NavLink
+            to="/skills"
+            className={({ isActive }) =>
+              isActive
+                ? "text-green-600 font-medium hover:text-green-500 transition-colors"
+                : "text-gray-700 hover:text-green-600 transition-colors"
+            }
+          >
+            Skills
+          </NavLink>
+          <NavLink
             to="/contact"
             className={({ isActive }) =>
               isActive
@@ -120,6 +140,26 @@ const Navbar: React.FC = () => {
               onClick={() => setIsOpen(false)}
             >
               Projects
+            </NavLink>
+            <NavLink
+              to="/blogs"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-green-600 font-medium hover:text-green-500 transition-colors"
+                  : "text-gray-700 hover:text-green-600 transition-colors"
+              }
+            >
+              Blogs
+            </NavLink>
+            <NavLink
+              to="/skills"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-green-600 font-medium hover:text-green-500 transition-colors"
+                  : "text-gray-700 hover:text-green-600 transition-colors"
+              }
+            >
+              Skills
             </NavLink>
             <NavLink
               to="/contact"
