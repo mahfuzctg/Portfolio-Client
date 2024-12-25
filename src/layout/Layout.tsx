@@ -1,17 +1,24 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Footer from "../components/Shared/Footer/Footer";
 import Navbar from "../components/Shared/Navbar/Navbar";
 
 const Layout: React.FC = () => {
   return (
-    <>
-      <Navbar />
-      <main className="my-20">
-        <Outlet /> {/* This renders the child routes */}
-      </main>
-      <Footer />
-    </>
+    <div className="min-h-screen flex overflow-x-hidden">
+      {/* Left Sidebar (Navbar) */}
+      <div className=" fixed top-0 left-0 h-full bg-white shadow-lg z-50">
+        <Navbar />
+      </div>
+
+      {/* Main content */}
+      <div className=" ml-[5%] p-4 lg:p-8">
+        <main>
+          <Outlet /> {/* This renders the child routes */}
+        </main>
+      </div>
+
+      {/* Footer */}
+    </div>
   );
 };
 
