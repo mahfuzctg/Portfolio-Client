@@ -19,7 +19,7 @@ const HomeBanner = () => {
   }, [roles.length]);
 
   return (
-    <div className="bg-gray-100 p-6 lg:px-20 flex flex-col lg:flex-row gap-6 items-center justify-center w-full min-h-screen">
+    <div className="p-6 lg:px-20 flex flex-col lg:flex-row gap-6 items-center justify-center w-full min-h-screen">
       {/* Main Content Section with 90% width on large devices */}
       <div className="w-full lg:w-9/12 flex flex-col lg:flex-row gap-6 items-center justify-center">
         {/* Left Section: Text with Animation */}
@@ -53,14 +53,16 @@ const HomeBanner = () => {
         </div>
 
         {/* Center Section: Image */}
-        <div className="flex flex-col items-center lg:items-start text-center lg:text-left w-full">
-          <div className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 overflow-hidden rounded-t-full border-4 border-white shadow-2xl transform transition-transform duration-500 hover:scale-105 hover:rotate-2">
+        <div className="w-full md:w-1/2 flex justify-center relative">
+          <div className="bg-pink-600 rounded-full w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 flex items-center justify-center shadow-lg relative overflow-hidden">
             <img
               src="https://i.postimg.cc/c1vbYYFP/My-profile-pic.jpg"
-              alt="Advocate"
-              className="w-full h-full object-cover"
+              alt="About Me"
+              className="rounded-full w-5/6 h-5/6 object-cover transform scale-105 transition-transform duration-500 hover:scale-110"
             />
           </div>
+          {/* Decorative Circle */}
+          <div className="absolute w-72 h-72 md:w-80 md:h-80 rounded-t-full  bg-pink-600  -z-10 animate-pulse"></div>
         </div>
       </div>
 
