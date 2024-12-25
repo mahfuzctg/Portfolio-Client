@@ -113,7 +113,7 @@ const HomeBanner = () => {
 
         {/* Center Section: Image */}
         <div className="w-full flex justify-center relative">
-          <div className="bg-pink-600 rounded-full w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 flex items-center justify-center shadow-lg relative overflow-hidden">
+          <div className="bg-pink-600 rounded-full w-64 h-64 md:w-72 md:h-72 lg:w-[500px] lg:h-[500px] flex items-center justify-center shadow-lg relative overflow-hidden">
             <img
               src="https://i.postimg.cc/c1vbYYFP/My-profile-pic.jpg"
               alt="About Me"
@@ -121,7 +121,7 @@ const HomeBanner = () => {
             />
           </div>
           {/* Decorative Circle */}
-          <div className="absolute w-72 h-72 md:w-80 md:h-80 rounded-t-full bg-pink-600 -z-10 animate-pulse"></div>
+          <div className="absolute w-72 h-72 md:w-[520px] md:h-[510px] rounded-t-full bg-pink-600 -z-10 animate-pulse"></div>
         </div>
       </div>
 
