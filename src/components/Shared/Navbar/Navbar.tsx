@@ -1,181 +1,104 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
+import {
+  FaBlog,
+  FaEnvelope,
+  FaHome,
+  FaProjectDiagram,
+  FaSignInAlt,
+  FaTools,
+  FaUser,
+} from "react-icons/fa";
+import { NavLink, useLocation } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import "./animations.css"; // Custom CSS for animations
 
 const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   return (
-    <nav className=" fixed  h-full w-[5%]  shadow-lg">
-      <div className="flex flex-col justify-center items-center h-full px-6 py-4">
-        {/* Mobile Menu Button */}
-        <div className="flex md:hidden absolute top-4 left-4">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-gray-700 hover:text-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
-          >
-            <svg
-              className="h-6 w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {isOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16m-7 6h7"
-                />
-              )}
-            </svg>
-          </button>
-        </div>
-
-        {/* Desktop Menu */}
-        <div className="hidden md:flex flex-col space-y-6 my-auto">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive
-                ? "text-green-600 font-medium hover:text-green-500 transition-colors"
-                : "text-gray-700 hover:text-green-600 transition-colors"
-            }
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              isActive
-                ? "text-green-600 font-medium hover:text-green-500 transition-colors"
-                : "text-gray-700 hover:text-green-600 transition-colors"
-            }
-          >
-            About
-          </NavLink>
-          <NavLink
-            to="/projects"
-            className={({ isActive }) =>
-              isActive
-                ? "text-green-600 font-medium hover:text-green-500 transition-colors"
-                : "text-gray-700 hover:text-green-600 transition-colors"
-            }
-          >
-            Projects
-          </NavLink>
-          <NavLink
-            to="/blogs"
-            className={({ isActive }) =>
-              isActive
-                ? "text-green-600 font-medium hover:text-green-500 transition-colors"
-                : "text-gray-700 hover:text-green-600 transition-colors"
-            }
-          >
-            Blogs
-          </NavLink>
-          <NavLink
-            to="/skills"
-            className={({ isActive }) =>
-              isActive
-                ? "text-green-600 font-medium hover:text-green-500 transition-colors"
-                : "text-gray-700 hover:text-green-600 transition-colors"
-            }
-          >
-            Skills
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              isActive
-                ? "text-green-600 font-medium hover:text-green-500 transition-colors"
-                : "text-gray-700 hover:text-green-600 transition-colors"
-            }
-          >
-            Contact
-          </NavLink>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden absolute top-0 left-0 w-[5%] h-full bg-transparent shadow-lg px-6 py-4">
-          <div className="space-y-6">
+    <div className="app-container">
+      <nav className="fixed md:left-0 md:top-0 md:h-full md:w-[5%] w-full top-0 bg-white shadow-md z-50">
+        <div className="flex md:flex-col flex-row md:justify-center justify-start items-center md:my-auto md:py-4 py-2">
+          <div className="flex md:flex-col flex-row md:space-y-6 space-x-6 md:space-x-0">
             <NavLink
               to="/"
               className={({ isActive }) =>
                 isActive
-                  ? "block text-green-600 font-medium hover:text-green-500 transition-colors"
-                  : "block text-gray-700 hover:text-green-600 transition-colors"
+                  ? "text-pink-600 bg-pink-100 p-2 rounded-full hover:bg-pink-200 transition-colors"
+                  : "text-gray-700 hover:text-pink-600 hover:bg-pink-100 p-2 rounded-full transition-colors"
               }
-              onClick={() => setIsOpen(false)}
             >
-              Home
+              <FaHome className="md:h-6 md:w-6 h-4 w-4" />
             </NavLink>
             <NavLink
               to="/about"
               className={({ isActive }) =>
                 isActive
-                  ? "block text-green-600 font-medium hover:text-green-500 transition-colors"
-                  : "block text-gray-700 hover:text-green-600 transition-colors"
+                  ? "text-pink-600 bg-pink-100 p-2 rounded-full hover:bg-pink-200 transition-colors"
+                  : "text-gray-700 hover:text-pink-600 hover:bg-pink-100 p-2 rounded-full transition-colors"
               }
-              onClick={() => setIsOpen(false)}
             >
-              About
+              <FaUser className="md:h-6 md:w-6 h-4 w-4" />
             </NavLink>
             <NavLink
               to="/projects"
               className={({ isActive }) =>
                 isActive
-                  ? "block text-green-600 font-medium hover:text-green-500 transition-colors"
-                  : "block text-gray-700 hover:text-green-600 transition-colors"
+                  ? "text-pink-600 bg-pink-100 p-2 rounded-full hover:bg-pink-200 transition-colors"
+                  : "text-gray-700 hover:text-pink-600 hover:bg-pink-100 p-2 rounded-full transition-colors"
               }
-              onClick={() => setIsOpen(false)}
             >
-              Projects
+              <FaProjectDiagram className="md:h-6 md:w-6 h-4 w-4" />
             </NavLink>
             <NavLink
               to="/blogs"
               className={({ isActive }) =>
                 isActive
-                  ? "text-green-600 font-medium hover:text-green-500 transition-colors"
-                  : "text-gray-700 hover:text-green-600 transition-colors"
+                  ? "text-pink-600 bg-pink-100 p-2 rounded-full hover:bg-pink-200 transition-colors"
+                  : "text-gray-700 hover:text-pink-600 hover:bg-pink-100 p-2 rounded-full transition-colors"
               }
             >
-              Blogs
+              <FaBlog className="md:h-6 md:w-6 h-4 w-4" />
             </NavLink>
             <NavLink
               to="/skills"
               className={({ isActive }) =>
                 isActive
-                  ? "text-green-600 font-medium hover:text-green-500 transition-colors"
-                  : "text-gray-700 hover:text-green-600 transition-colors"
+                  ? "text-pink-600 bg-pink-100 p-2 rounded-full hover:bg-pink-200 transition-colors"
+                  : "text-gray-700 hover:text-pink-600 hover:bg-pink-100 p-2 rounded-full transition-colors"
               }
             >
-              Skills
+              <FaTools className="md:h-6 md:w-6 h-4 w-4" />
             </NavLink>
             <NavLink
               to="/contact"
               className={({ isActive }) =>
                 isActive
-                  ? "block text-green-600 font-medium hover:text-green-500 transition-colors"
-                  : "block text-gray-700 hover:text-green-600 transition-colors"
+                  ? "text-pink-600 bg-pink-100 p-2 rounded-full hover:bg-pink-200 transition-colors"
+                  : "text-gray-700 hover:text-pink-600 hover:bg-pink-100 p-2 rounded-full transition-colors"
               }
-              onClick={() => setIsOpen(false)}
             >
-              Contact
+              <FaEnvelope className="md:h-6 md:w-6 h-4 w-4" />
+            </NavLink>
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-pink-600 bg-pink-100 p-2 rounded-full hover:bg-pink-200 transition-colors"
+                  : "text-gray-700 hover:text-pink-600 hover:bg-pink-100 p-2 rounded-full transition-colors"
+              }
+            >
+              <FaSignInAlt className="md:h-6 md:w-6 h-4 w-4" />
             </NavLink>
           </div>
         </div>
-      )}
-    </nav>
+      </nav>
+      <TransitionGroup className="page-transition">
+        <CSSTransition key={location.key} classNames="fade" timeout={300}>
+          <div className="page">{/* Add your route's content here */}</div>
+        </CSSTransition>
+      </TransitionGroup>
+    </div>
   );
 };
 
