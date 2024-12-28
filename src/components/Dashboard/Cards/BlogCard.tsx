@@ -73,7 +73,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
         </span>
         <div className="flex items-center space-x-3">
           <button
-            className="text-blue-600 hover:text-blue-500 transition"
+            className="text-pink-600 hover:text-H transition"
             onClick={() => onEdit(blog)}
           >
             <MdEdit size={20} />

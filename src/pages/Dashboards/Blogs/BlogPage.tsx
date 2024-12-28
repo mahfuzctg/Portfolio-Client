@@ -2,13 +2,15 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import BlogCard from "../../../components/Dashboard/Cards/BlogCard";
+import CreateBlogModal from "../../../components/Dashboard/Modals/CreateBlogModal"; // Import CreateBlogModal
 import UpdateBlogModal from "../../../components/Dashboard/Modals/UpdateBlogModal";
 import { useGetBlogsQuery } from "../../../redux/features/blogs/blogsApi";
 
 const BlogPage: React.FC = () => {
   const { data, isLoading, isError, error } = useGetBlogsQuery();
   const [blogs, setBlogs] = useState<any[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false); // Add state for the create modal
   const [selectedBlog, setSelectedBlog] = useState<any>(null);
 
   // Sync local state with fetched data
@@ -20,7 +22,7 @@ const BlogPage: React.FC = () => {
 
   const handleEdit = (blog: any) => {
     setSelectedBlog(blog);
-    setIsModalOpen(true);
+    setIsUpdateModalOpen(true);
   };
 
   const handleDeleteSuccess = (blogId: string) => {
@@ -29,9 +31,13 @@ const BlogPage: React.FC = () => {
     toast.success("Blog deleted successfully!");
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closeUpdateModal = () => {
+    setIsUpdateModalOpen(false);
     setSelectedBlog(null);
+  };
+
+  const closeCreateModal = () => {
+    setIsCreateModalOpen(false);
   };
 
   const handleUpdateSuccess = (updatedBlog: any) => {
@@ -42,7 +48,14 @@ const BlogPage: React.FC = () => {
       )
     );
     toast.success("Blog updated successfully!");
-    closeModal();
+    closeUpdateModal();
+  };
+
+  const handleCreateSuccess = (newBlog: any) => {
+    // Add newly created blog to the list
+    setBlogs((prevBlogs) => [newBlog, ...prevBlogs]);
+    toast.success("Blog created successfully!");
+    closeCreateModal();
   };
 
   if (isLoading) {
@@ -66,6 +79,17 @@ const BlogPage: React.FC = () => {
         <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">
           Latest Blogs
         </h2>
+
+        {/* Create New Blog Button */}
+        <div className="text-center mb-6">
+          <button
+            className="px-6 py-2 bg-pink-600 text-white rounded hover:bg-pink-700"
+            onClick={() => setIsCreateModalOpen(true)} // Open the Create Blog modal
+          >
+            Create New Blog
+          </button>
+        </div>
+
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {blogs.map((blog: any) => (
             <BlogCard
@@ -79,12 +103,21 @@ const BlogPage: React.FC = () => {
       </div>
 
       {/* Update Blog Modal */}
-      {isModalOpen && (
+      {isUpdateModalOpen && (
         <UpdateBlogModal
           blog={selectedBlog}
-          isOpen={isModalOpen}
-          onClose={closeModal}
+          isOpen={isUpdateModalOpen}
+          onClose={closeUpdateModal}
           onUpdateSuccess={handleUpdateSuccess}
+        />
+      )}
+
+      {/* Create Blog Modal */}
+      {isCreateModalOpen && (
+        <CreateBlogModal
+          isOpen={isCreateModalOpen}
+          onClose={closeCreateModal}
+          onCreateSuccess={handleCreateSuccess}
         />
       )}
     </section>
