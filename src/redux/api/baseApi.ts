@@ -5,7 +5,7 @@ export const baseApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000/api",
   }),
-  endpoints: () => ({}), // Empty for now; endpoints will be added in services
+  endpoints: () => ({}),
 });
 
 export const { reducer: baseApiReducer, middleware: baseApiMiddleware } =
