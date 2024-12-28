@@ -4,6 +4,8 @@ import Layout from "../layout/Layout";
 import About from "../pages/About/About";
 import Blogs from "../pages/Blogs/Blogs";
 
+import BlogPage from "../pages/Dashboards/Blogs/BlogPage";
+import DashboardOverview from "../pages/Dashboards/DashboardOverview";
 import DashboardPage from "../pages/Dashboards/DashboardPage";
 import Home from "../pages/Home/Home";
 import LoginPage from "../pages/Login/LoginPage";
@@ -42,7 +44,11 @@ const AppRoutes: React.FC = () => {
               <DashboardPage /> {/* Private Dashboard page */}
             </PrivateRoute>
           }
-        />
+        >
+          {/* Nested Dashboard routes */}
+          <Route path="overview" element={<DashboardOverview />} />
+          <Route path="blog-page" element={<BlogPage />} />
+        </Route>
         {/* Catch-all route for 404 */}
         <Route path="*" element={<NotFound />} />
       </Route>
