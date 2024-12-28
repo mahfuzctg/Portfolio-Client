@@ -18,7 +18,7 @@ const CreateBlogModal: React.FC<CreateBlogModalProps> = ({
   const [formData, setFormData] = useState({
     title: "",
     content: "",
-    author: "",
+    profileImage: "", // Changed from author to profileImage
     category: "",
     link: "",
     image: "",
@@ -66,10 +66,10 @@ const CreateBlogModal: React.FC<CreateBlogModalProps> = ({
         />
         <input
           type="text"
-          name="author"
-          value={formData.author}
+          name="profileImage" // Changed from author to profileImage
+          value={formData.profileImage}
           onChange={handleInputChange}
-          placeholder="Author URL (Profile Image)"
+          placeholder="Profile Image URL"
           className="w-full border border-gray-300 rounded px-3 py-2 mb-3"
           disabled={isLoading}
         />
