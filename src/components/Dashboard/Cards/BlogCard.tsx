@@ -1,4 +1,8 @@
+// BlogCard.tsx
 import React from "react";
+import { MdDelete, MdEdit } from "react-icons/md";
+import { toast } from "react-toastify";
+import { useDeleteBlogMutation } from "../../../redux/features/blogs/blogsApi";
 
 interface BlogCardProps {
   blog: {
@@ -10,9 +14,29 @@ interface BlogCardProps {
     createdAt: string;
     link?: string;
   };
+  onEdit: (blog: any) => void;
+  onDeleteSuccess: (blogId: string) => void;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
+const BlogCard: React.FC<BlogCardProps> = ({
+  blog,
+  onEdit,
+  onDeleteSuccess,
+}) => {
+  const [deleteBlog] = useDeleteBlogMutation();
+
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this blog?")) {
+      try {
+        await deleteBlog(blog._id).unwrap();
+        toast.success("Blog deleted successfully!");
+        onDeleteSuccess(blog._id); // Update UI in real time
+      } catch (error: any) {
+        toast.error(error?.data?.message || "Failed to delete blog.");
+      }
+    }
+  };
+
   return (
     <div
       key={blog._id}
@@ -26,7 +50,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
           className="w-full h-32 object-cover transition-transform duration-300 group-hover:scale-105"
         />
         {blog.category && (
-          <span className="absolute top-2 left-2 bg-pink-600 text-white text-[10px] px-2 py-0.5 rounded-full shadow">
+          <span className="absolute top-2 left-2 bg-green-600 text-white text-[10px] px-2 py-0.5 rounded-full shadow">
             {blog.category}
           </span>
         )}
@@ -34,7 +58,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
 
       {/* Blog Content */}
       <div className="p-4 flex flex-col flex-grow space-y-2">
-        <h3 className="text-sm font-medium text-gray-800 group-hover:text-pink-600 transition-colors">
+        <h3 className="text-sm font-medium text-gray-800 group-hover:text-green-600 transition-colors">
           {blog.title || "Untitled Blog"}
         </h3>
         <p className="text-xs text-gray-600 line-clamp-2">
@@ -47,28 +71,20 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
         <span className="text-[10px] text-gray-500 flex items-center">
           {new Date(blog.createdAt).toLocaleDateString()}
         </span>
-        <a
-          href={blog.link || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center text-pink-600 hover:text-pink-500 text-[9px] font-medium transition"
-        >
-          Read More
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            stroke="currentColor"
-            className="w-2.5 h-2.5 ml-1"
+        <div className="flex items-center space-x-3">
+          <button
+            className="text-blue-600 hover:text-blue-500 transition"
+            onClick={() => onEdit(blog)}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </a>
+            <MdEdit size={20} />
+          </button>
+          <button
+            className="text-red-600 hover:text-red-500 transition"
+            onClick={handleDelete}
+          >
+            <MdDelete size={20} />
+          </button>
+        </div>
       </div>
     </div>
   );
