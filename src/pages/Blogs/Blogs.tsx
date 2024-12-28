@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import BlogCard from "../../components/Blogs/BlogCard";
+
+import BlogCard from "../../components/Cards/BlogCard";
 import { useGetBlogsQuery } from "../../redux/features/blogs/blogsApi";
 
-const Blogs: React.FC = () => {
+const BlogPage: React.FC = () => {
   const { data, isLoading, isError, error } = useGetBlogsQuery();
 
   if (isLoading) {
@@ -29,7 +30,8 @@ const Blogs: React.FC = () => {
         <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">
           Latest Blogs
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Adjust grid layout for responsiveness */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {blogPosts.map(
             (blog: {
               _id: any;
@@ -49,4 +51,4 @@ const Blogs: React.FC = () => {
   );
 };
 
-export default Blogs;
+export default BlogPage;

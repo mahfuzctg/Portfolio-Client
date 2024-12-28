@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import BlogCard from "../../../components/Blogs/BlogCard";
+
+import BlogCard from "../../../components/Dashboard/Cards/BlogCard";
 import { useGetBlogsQuery } from "../../../redux/features/blogs/blogsApi";
 
 const BlogPage: React.FC = () => {
