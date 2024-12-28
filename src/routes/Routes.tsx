@@ -5,6 +5,7 @@ import About from "../pages/About/About";
 import Blogs from "../pages/Blogs/Blogs";
 
 import BlogPage from "../pages/Dashboards/Blogs/BlogPage";
+import ProjectsPage from "../pages/Dashboards/Blogs/ProjectPage";
 import DashboardOverview from "../pages/Dashboards/DashboardOverview";
 import DashboardPage from "../pages/Dashboards/DashboardPage";
 import Home from "../pages/Home/Home";
@@ -47,6 +48,7 @@ const AppRoutes: React.FC = () => {
         >
           {/* Nested Dashboard routes */}
           <Route path="overview" element={<DashboardOverview />} />
+          <Route path="project-page" element={<ProjectsPage />} />
           <Route path="blog-page" element={<BlogPage />} />
         </Route>
         {/* Catch-all route for 404 */}

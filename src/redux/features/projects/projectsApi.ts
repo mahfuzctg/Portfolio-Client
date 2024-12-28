@@ -38,8 +38,6 @@ export const projectsApi = baseApi.injectEndpoints({
         method: "DELETE",
       }),
     }),
-
-    // Additional endpoints can be added as needed
   }),
 });
 

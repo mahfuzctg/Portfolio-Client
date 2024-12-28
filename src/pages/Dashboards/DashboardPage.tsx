@@ -41,6 +41,14 @@ const DashboardPage: React.FC = () => {
                 Blogs 📝
               </Link>
             </li>
+            <li>
+              <Link
+                to="/dashboard/project-page"
+                className="block text-white hover:bg-pink-700 p-2 rounded-md"
+              >
+                Projects 📝
+              </Link>
+            </li>
             {/* Add more links here if needed */}
             <li>
               <Link
