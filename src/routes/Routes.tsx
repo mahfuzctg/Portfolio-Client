@@ -11,8 +11,8 @@ import DashboardPage from "../pages/Dashboards/DashboardPage";
 import Home from "../pages/Home/Home";
 import LoginPage from "../pages/Login/LoginPage";
 import NotFound from "../pages/NotFound/NotFound";
+import Skills from "../pages/Portfolio/Portfolio";
 import Projects from "../pages/Projects/Project";
-import Skills from "../pages/Skills/Skills";
 
 // PrivateRoute component
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {

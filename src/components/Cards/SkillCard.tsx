@@ -9,9 +9,9 @@ interface SkillCardProps {
 const SkillCard: React.FC<SkillCardProps> = ({ skillName, image }) => {
   return (
     <div className="flex justify-center items-center">
-      <div className="relative bg-gradient-to-r from-pink-500 to-pink-600 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group transform hover:scale-105 w-full sm:w-48 md:w-56 lg:w-64 xl:w-72 mx-auto">
+      <div className="relative bg-gradient-to-t from-pink-600 to-pink-400 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group transform hover:scale-105 w-full sm:w-48 mx-auto">
         {/* Image - circular with border, and smooth zoom effect on hover */}
-        <div className="flex justify-center items-center mb-4 p-6">
+        <div className="flex justify-center items-center p-2">
           <img
             src={image}
             alt={skillName}

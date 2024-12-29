@@ -31,7 +31,7 @@ interface Education {
   image?: string;
 }
 
-const Skills: React.FC = () => {
+const Portfolio: React.FC = () => {
   const [activeTab, setActiveTab] = useState("skills");
 
   const {
@@ -51,50 +51,34 @@ const Skills: React.FC = () => {
   } = useGetEducationsQuery(undefined);
 
   return (
-    <section className="py-16 px-6 bg-gray-50">
+    <section className="py-16  bg-gray-50">
       <div>
         {/* Tab Navigation */}
-        <div className="flex justify-center mb-8">
-          {/* Large Screens Tabs */}
-          <div className="hidden sm:flex gap-8">
-            <button
-              className={`px-6 py-2 text-lg font-semibold ${activeTab === "skills" ? "bg-pink-600 text-white" : "bg-gray-200 text-gray-700"} rounded-full transition duration-300`}
-              onClick={() => setActiveTab("skills")}
-            >
-              Skills
-            </button>
-            <button
-              className={`px-6 py-2 text-lg font-semibold ${activeTab === "courses" ? "bg-pink-600 text-white" : "bg-gray-200 text-gray-700"} rounded-full transition duration-300`}
-              onClick={() => setActiveTab("courses")}
-            >
-              Courses
-            </button>
-            <button
-              className={`px-6 py-2 text-lg font-semibold ${activeTab === "education" ? "bg-pink-600 text-white" : "bg-gray-200 text-gray-700"} rounded-full transition duration-300`}
-              onClick={() => setActiveTab("education")}
-            >
-              Education
-            </button>
-          </div>
-
-          {/* Small Screens Tab Dropdown */}
-          <div className="sm:hidden w-full">
-            <select
-              className="w-full px-4 py-2 bg-gray-200 text-gray-700 rounded-lg"
-              value={activeTab}
-              onChange={(e) => setActiveTab(e.target.value)}
-            >
-              <option value="skills">Skills</option>
-              <option value="courses">Courses</option>
-              <option value="education">Education</option>
-            </select>
-          </div>
+        <div className="flex justify-center mx-auto gap-4 sm:gap-8 mb-8 sm:mb-16">
+          <button
+            className={`px-6 py-2 text-lg font-semibold ${activeTab === "skills" ? "bg-pink-600 text-white" : "bg-gray-200 text-gray-700"} rounded-lg transition-all duration-300`}
+            onClick={() => setActiveTab("skills")}
+          >
+            Skills
+          </button>
+          <button
+            className={`px-6 py-2 text-lg font-semibold ${activeTab === "courses" ? "bg-pink-600 text-white" : "bg-gray-200 text-gray-700"} rounded-lg transition-all duration-300`}
+            onClick={() => setActiveTab("courses")}
+          >
+            Courses
+          </button>
+          <button
+            className={`px-6 py-2 text-lg font-semibold ${activeTab === "education" ? "bg-pink-600 text-white" : "bg-gray-200 text-gray-700"} rounded-lg transition-all duration-300`}
+            onClick={() => setActiveTab("education")}
+          >
+            Education
+          </button>
         </div>
 
-        {/* Tab Content */}
+        {/* Content for active tab */}
         <div>
           {activeTab === "skills" && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+            <div className="grid grid-cols-1 mx-auto sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {skillsLoading ? (
                 <p>Loading skills...</p>
               ) : skillsError ? (
@@ -113,7 +97,7 @@ const Skills: React.FC = () => {
           )}
 
           {activeTab === "courses" && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 mx-auto sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {coursesLoading ? (
                 <p>Loading courses...</p>
               ) : coursesError ? (
@@ -134,7 +118,7 @@ const Skills: React.FC = () => {
           )}
 
           {activeTab === "education" && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div className="grid  bg-red-50 grid-cols-1 mx-auto sm:grid-cols-2 lg:grid-cols-1 gap-8">
               {educationLoading ? (
                 <p>Loading education...</p>
               ) : educationError ? (
@@ -149,6 +133,9 @@ const Skills: React.FC = () => {
                     degree={edu.degree}
                     year={edu.year}
                     description={edu.description}
+                    title={""}
+                    institution={""}
+                    link={""}
                   />
                 ))
               )}
@@ -160,4 +147,4 @@ const Skills: React.FC = () => {
   );
 };
 
-export default Skills;
+export default Portfolio;
