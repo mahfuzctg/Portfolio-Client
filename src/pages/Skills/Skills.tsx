@@ -1,209 +1,157 @@
-import React, { useState } from "react";
-import {
-  FaCss3Alt,
-  FaGithub,
-  FaHtml5,
-  FaJs,
-  FaNodeJs,
-  FaReact,
-} from "react-icons/fa";
-import { SiBootstrap, SiTailwindcss, SiTypescript } from "react-icons/si";
+import { useState } from "react";
+import CourseCard from "../../components/Cards/CourseCard";
+import EducationCard from "../../components/Cards/EducationCard";
+import SkillCard from "../../components/Cards/SkillCard";
+import { useGetCoursesQuery } from "../../redux/features/courses/course.Api";
+import { useGetEducationsQuery } from "../../redux/features/educations/education.Api";
+import { useGetSkillsQuery } from "../../redux/features/skills/skill.Api";
+
+interface Skill {
+  id: string;
+  name: string;
+  level: string;
+  description: string;
+  image?: string;
+}
+
+interface Course {
+  id: string;
+  title: string;
+  description: string;
+  link: string;
+  image?: string;
+}
+
+interface Education {
+  id: string;
+  school: string;
+  degree: string;
+  year: string;
+  description: string;
+  image?: string;
+}
 
 const Skills: React.FC = () => {
-  const [activeTab, setActiveTab] = useState("technical");
+  const [activeTab, setActiveTab] = useState("skills");
 
-  const technicalSkills = [
-    {
-      id: 1,
-      name: "HTML",
-      icon: <FaHtml5 className="w-12 h-12 text-orange-600" />,
-    },
-    {
-      id: 2,
-      name: "CSS",
-      icon: <FaCss3Alt className="w-12 h-12 text-blue-500" />,
-    },
-    {
-      id: 3,
-      name: "Bootstrap",
-      icon: <SiBootstrap className="w-12 h-12 text-purple-500" />,
-    },
-    {
-      id: 4,
-      name: "JavaScript",
-      icon: <FaJs className="w-12 h-12 text-yellow-500" />,
-    },
-    {
-      id: 5,
-      name: "TypeScript",
-      icon: <SiTypescript className="w-12 h-12 text-blue-600" />,
-    },
-    {
-      id: 6,
-      name: "React",
-      icon: <FaReact className="w-12 h-12 text-cyan-400" />,
-    },
-    {
-      id: 7,
-      name: "GitHub",
-      icon: <FaGithub className="w-12 h-12 text-gray-800" />,
-    },
-    {
-      id: 8,
-      name: "Node.js",
-      icon: <FaNodeJs className="w-12 h-12 text-green-600" />,
-    },
-    {
-      id: 9,
-      name: "Tailwind CSS",
-      icon: <SiTailwindcss className="w-12 h-12 text-sky-400" />,
-    },
-  ];
-
-  const courses = [
-    {
-      id: 1,
-      title: "React Development",
-      description:
-        "Learn React from scratch, including hooks and advanced concepts.",
-      image: "https://via.placeholder.com/200",
-      link: "#",
-    },
-    {
-      id: 2,
-      title: "Web Development Bootcamp",
-      description:
-        "A comprehensive course covering HTML, CSS, JavaScript, and more.",
-      image: "https://via.placeholder.com/200",
-      link: "#",
-    },
-    {
-      id: 3,
-      title: "TypeScript for Beginners",
-      description: "Master TypeScript and how it enhances JavaScript.",
-      image: "https://via.placeholder.com/200",
-      link: "#",
-    },
-  ];
-
-  const education = [
-    {
-      id: 1,
-      school: "XYZ University",
-      degree: "Bachelor of Computer Science",
-      year: "2018-2022",
-      image: "https://via.placeholder.com/200",
-      description: "Specialized in Software Engineering and Development.",
-    },
-    {
-      id: 2,
-      school: "ABC College",
-      degree: "High School Diploma",
-      year: "2016-2018",
-      image: "https://via.placeholder.com/200",
-      description: "Graduated with honors in Science and Technology.",
-    },
-  ];
+  const {
+    data: skills,
+    isLoading: skillsLoading,
+    isError: skillsError,
+  } = useGetSkillsQuery(undefined);
+  const {
+    data: courses,
+    isLoading: coursesLoading,
+    isError: coursesError,
+  } = useGetCoursesQuery(undefined);
+  const {
+    data: educations,
+    isLoading: educationLoading,
+    isError: educationError,
+  } = useGetEducationsQuery(undefined);
 
   return (
-    <section className="py-16  px-6 bg-gray-50">
+    <section className="py-16 px-6 bg-gray-50">
       <div>
         {/* Tab Navigation */}
-        <div className="fixed  left-1/2 transform -translate-x-1/2  bg-white shadow-md ">
-          <div className="flex justify-center gap-8 ">
+        <div className="flex justify-center mb-8">
+          {/* Large Screens Tabs */}
+          <div className="hidden sm:flex gap-8">
             <button
-              className={`px-6 py-2 text-lg font-semibold ${activeTab === "technical" ? "bg-pink-600 text-white" : "bg-gray-200 text-gray-700"} rounded-l-lg`}
-              onClick={() => setActiveTab("technical")}
+              className={`px-6 py-2 text-lg font-semibold ${activeTab === "skills" ? "bg-pink-600 text-white" : "bg-gray-200 text-gray-700"} rounded-full transition duration-300`}
+              onClick={() => setActiveTab("skills")}
             >
-              Technical Skills
+              Skills
             </button>
             <button
-              className={`px-6 py-2 text-lg font-semibold ${activeTab === "courses" ? "bg-pink-600 text-white" : "bg-gray-200 text-gray-700"}`}
+              className={`px-6 py-2 text-lg font-semibold ${activeTab === "courses" ? "bg-pink-600 text-white" : "bg-gray-200 text-gray-700"} rounded-full transition duration-300`}
               onClick={() => setActiveTab("courses")}
             >
               Courses
             </button>
             <button
-              className={`px-6 py-2 text-lg font-semibold ${activeTab === "education" ? "bg-pink-600 text-white" : "bg-gray-200 text-gray-700"} rounded-r-lg`}
+              className={`px-6 py-2 text-lg font-semibold ${activeTab === "education" ? "bg-pink-600 text-white" : "bg-gray-200 text-gray-700"} rounded-full transition duration-300`}
               onClick={() => setActiveTab("education")}
             >
               Education
             </button>
           </div>
+
+          {/* Small Screens Tab Dropdown */}
+          <div className="sm:hidden w-full">
+            <select
+              className="w-full px-4 py-2 bg-gray-200 text-gray-700 rounded-lg"
+              value={activeTab}
+              onChange={(e) => setActiveTab(e.target.value)}
+            >
+              <option value="skills">Skills</option>
+              <option value="courses">Courses</option>
+              <option value="education">Education</option>
+            </select>
+          </div>
         </div>
-        <br />
+
         {/* Tab Content */}
-        <div className="transition-all duration-300 ease-in-out mt-20">
-          {/* Technical Skills Tab */}
-          {activeTab === "technical" && (
-            <div className="w-full mx-auto grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-6 justify-items-center">
-              {technicalSkills.map((skill) => (
-                <div
-                  key={skill.id}
-                  className="flex flex-col items-center p-6 bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300"
-                >
-                  {skill.icon}
-                  <span className="mt-3 text-gray-700 font-semibold">
-                    {skill.name}
-                  </span>
-                </div>
-              ))}
+        <div>
+          {activeTab === "skills" && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+              {skillsLoading ? (
+                <p>Loading skills...</p>
+              ) : skillsError ? (
+                <p>Error loading skills</p>
+              ) : (
+                skills?.map((skill: Skill) => (
+                  <SkillCard
+                    key={skill.id}
+                    id={Number(skill.id)} // Convert string to number
+                    skillName={skill.name}
+                    image={skill.image}
+                  />
+                ))
+              )}
             </div>
           )}
 
-          {/* Courses Tab */}
           {activeTab === "courses" && (
-            <div className="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-              {courses.map((course) => (
-                <div
-                  key={course.id}
-                  className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
-                >
-                  <img
-                    src={course.image}
-                    alt={course.title}
-                    className="w-full h-48 object-cover"
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              {coursesLoading ? (
+                <p>Loading courses...</p>
+              ) : coursesError ? (
+                <p>Error loading courses</p>
+              ) : (
+                courses?.map((course: Course) => (
+                  <CourseCard
+                    key={course.id}
+                    id={Number(course.id)} // Convert string to number
+                    image={course.image}
+                    title={course.title}
+                    description={course.description}
+                    link={course.link}
                   />
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-800">
-                      {course.title}
-                    </h3>
-                    <p className="text-gray-600 mt-2">{course.description}</p>
-                    <a
-                      href={course.link}
-                      className="mt-4 inline-block text-pink-600 font-semibold hover:text-pink-500"
-                    >
-                      Learn More
-                    </a>
-                  </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
           )}
 
-          {/* Education Tab */}
           {activeTab === "education" && (
-            <div className="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-              {education.map((edu) => (
-                <div
-                  key={edu.id}
-                  className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
-                >
-                  <img
-                    src={edu.image}
-                    alt={edu.school}
-                    className="w-full h-48 object-cover"
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              {educationLoading ? (
+                <p>Loading education...</p>
+              ) : educationError ? (
+                <p>Error loading education</p>
+              ) : (
+                educations?.map((edu: Education) => (
+                  <EducationCard
+                    key={edu.id}
+                    id={Number(edu.id)} // Convert string to number
+                    image={edu.image}
+                    school={edu.school}
+                    degree={edu.degree}
+                    year={edu.year}
+                    description={edu.description}
                   />
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-800">
-                      {edu.school}
-                    </h3>
-                    <p className="text-gray-600 mt-2">{edu.degree}</p>
-                    <p className="text-gray-500 mt-2">{edu.year}</p>
-                    <p className="text-gray-600 mt-2">{edu.description}</p>
-                  </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
           )}
         </div>

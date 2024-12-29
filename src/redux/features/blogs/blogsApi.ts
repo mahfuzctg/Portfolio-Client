@@ -5,11 +5,13 @@ export const blogsApi = baseApi.injectEndpoints({
     // Fetch all blogs
     getBlogs: builder.query({
       query: () => "/blogs",
+      providesTags: ["Blog"], // Provide 'Blog' tag for cache invalidation
     }),
 
     // Fetch a single blog by ID
     getBlogById: builder.query({
       query: (id: string) => `/blogs/${id}`,
+      providesTags: (result, error, id) => [{ type: "Blog", id }], // Provide a tag for the specific blog entry
     }),
 
     // Create a new blog
@@ -19,6 +21,7 @@ export const blogsApi = baseApi.injectEndpoints({
         method: "POST",
         body: newBlog,
       }),
+      invalidatesTags: ["Blog"], // Invalidate 'Blog' tag after creating a new blog
     }),
 
     // Update an existing blog by ID
@@ -28,6 +31,7 @@ export const blogsApi = baseApi.injectEndpoints({
         method: "PUT",
         body: updatedBlog,
       }),
+      invalidatesTags: (result, error, { id }) => [{ type: "Blog", id }], // Invalidate cache for the updated blog entry
     }),
 
     // Delete a blog by ID
@@ -36,6 +40,7 @@ export const blogsApi = baseApi.injectEndpoints({
         url: `/blogs/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: (result, error, id) => [{ type: "Blog", id }], // Invalidate cache for the deleted blog entry
     }),
   }),
 });

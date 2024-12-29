@@ -13,5 +13,6 @@ export const baseApi = createApi({
       return headers;
     },
   }),
+  tagTypes: ["Project", "Blog", "Skill", "service", "Education", "Course"],
   endpoints: () => ({}), // Empty endpoint for now, will be injected
 });
