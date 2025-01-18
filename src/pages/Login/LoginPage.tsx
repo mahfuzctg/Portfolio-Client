@@ -39,9 +39,9 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-50">
-      <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center text-pink-600 mb-6">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-[#151515] via-[#211951] to-[#10375C]">
+      <div className="bg-gradient-to-br from-[#151515] via-[#211951] to-[#10375C] p-8 rounded-lg shadow-xl w-full max-w-md">
+        <h2 className="text-3xl font-bold text-center text-white mb-6">
           Welcome Back! 😄
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -52,7 +52,7 @@ const LoginPage: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="📧 Email"
               required
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#12345B]"
             />
           </div>
           <div className="relative">
@@ -62,12 +62,12 @@ const LoginPage: React.FC = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="🔒 Password"
               required
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#12345B]"
             />
             <button
               type="button"
               onClick={togglePasswordVisibility}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-pink-500"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#12345B]"
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
@@ -75,16 +75,19 @@ const LoginPage: React.FC = () => {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full p-3 bg-pink-600 text-white rounded-md hover:bg-pink-700 disabled:bg-pink-400 transition"
+            className="w-full p-3 bg-[#19162B] text-white rounded-md hover:bg-[#12345B] disabled:bg-pink-400 transition"
           >
             {isLoading ? "Logging in... 🏃‍♀️" : "Login 🚀"}
           </button>
         </form>
         {isError && !success && (
           <p className="text-red-500 text-center mt-4">
-            {error?.message || "Login failed 😔"}
+            {/* Check if the error has a message */}
+            {(error as { data?: { message?: string } })?.data?.message ||
+              "Login failed 😔"}
           </p>
         )}
+
         {success && (
           <p className="text-green-500 text-center mt-4">
             Login successful! 🎉

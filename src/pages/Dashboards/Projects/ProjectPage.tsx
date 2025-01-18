@@ -1,35 +1,23 @@
 import React, { useState } from "react";
-import { toast } from "react-toastify";
 import ProjectCard from "../../../components/Dashboard/Cards/ProjectCard";
-import CreateProjectModal from "../../../components/Dashboard/Modals/CreateProjectModal";
-import {
-  useAddProjectMutation,
-  useGetProjectsQuery,
-} from "../../../redux/features/projects/projectsApi";
+
+import { useGetProjectsQuery } from "../../../redux/features/projects/projectsApi";
 import { Project } from "../../../types/project.type";
 
 const ProjectsPage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { data: projects, isLoading, error } = useGetProjectsQuery();
-  const [addProject] = useAddProjectMutation();
+  const { data: projects, error } = useGetProjectsQuery(undefined);
 
   const handleModalToggle = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const handleAddProject = async (newProject: Project) => {
-    try {
-      await addProject(newProject).unwrap();
-      toast.success("Project added successfully!");
-      handleModalToggle(); // Close the modal after submission
-    } catch (error) {
-      console.error("Error adding project:", error);
-      toast.error("Failed to add project. Please try again.");
-    }
-  };
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) {
+    const errorMessage =
+      (error as { data?: { message?: string } })?.data?.message ||
+      "An error occurred while fetching the projects.";
+    return <div>Error: {errorMessage}</div>;
+  }
 
   return (
     <section className="bg-gray-100 py-16 px-6">
@@ -54,14 +42,6 @@ const ProjectsPage: React.FC = () => {
           ))}
         </div>
       </div>
-
-      {/* Create Modal */}
-      {isModalOpen && (
-        <CreateProjectModal
-          onClose={handleModalToggle}
-          onSuccess={handleAddProject}
-        />
-      )}
     </section>
   );
 };

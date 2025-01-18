@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import {
   FaArrowRight,
@@ -38,7 +37,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         await deleteProject(project._id).unwrap();
         toast.success("Project deleted successfully!");
       } catch (error) {
-        const errorMessage = error?.message || "Failed to delete project.";
+        const errorMessage =
+          (error as Error)?.message || "Failed to delete project.";
         toast.error(errorMessage);
       }
     }
@@ -140,12 +140,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               toast.error("Invalid project ID");
               return;
             }
-            updateProject({ id: project._id, updatedProject })
+            // Pass the correct structure
+            updateProject({ id: project._id, updatedProject: updatedProject })
               .unwrap()
               .then(() => toast.success("Project updated successfully!"))
               .catch((error) => {
                 const errorMessage =
-                  error?.message || "Failed to update project";
+                  (error as Error)?.message || "Failed to update project";
                 toast.error(errorMessage);
               });
             closeModal();

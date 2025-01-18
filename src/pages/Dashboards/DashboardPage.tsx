@@ -21,22 +21,14 @@ const DashboardPage: React.FC = () => {
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <div className="w-64 bg-pink-600 text-white p-4 space-y-6">
+      <div className="w-64 bg-gradient-to-br from-[#211951] via-[#10375C] to-[#151515] text-white p-4 space-y-6">
         <div className="text-xl font-semibold">Dashboard</div>
         <nav>
           <ul className="space-y-4">
             <li>
               <Link
-                to="/dashboard/overview"
-                className="block text-white hover:bg-pink-700 p-2 rounded-md"
-              >
-                Overview 📝
-              </Link>
-            </li>
-            <li>
-              <Link
                 to="/dashboard/blog-page"
-                className="block text-white hover:bg-pink-700 p-2 rounded-md"
+                className="block text-white hover:bg-[#314376] p-2 rounded-md"
               >
                 Blogs 📝
               </Link>
@@ -44,16 +36,24 @@ const DashboardPage: React.FC = () => {
             <li>
               <Link
                 to="/dashboard/project-page"
-                className="block text-white hover:bg-pink-700 p-2 rounded-md"
+                className="block text-white hover:bg-[#314376] p-2 rounded-md"
               >
                 Projects 📝
               </Link>
             </li>
-            {/* Add more links here if needed */}
+            <li>
+              <Link
+                to="/dashboard/skill-page"
+                className="block text-white hover:bg-[#314376] p-2 rounded-md"
+              >
+                Skills 📝
+              </Link>
+            </li>
+
             <li>
               <Link
                 to="/login"
-                className="block text-white hover:bg-pink-700 p-2 rounded-md"
+                className="block text-white hover:bg-[#314376] p-2 rounded-md"
                 onClick={() => localStorage.removeItem("authToken")}
               >
                 Logout

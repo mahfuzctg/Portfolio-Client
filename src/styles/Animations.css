@@ -23,3 +23,19 @@
     opacity 300ms ease-in-out,
     transform 300ms ease-in-out;
 }
+
+@keyframes moving-border {
+  0% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #6957dd;
+  }
+  100% {
+    border-color: transparent;
+  }
+}
+
+.animate-moving-border {
+  animation: moving-border 3s linear infinite;
+}

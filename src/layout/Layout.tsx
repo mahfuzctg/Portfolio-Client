@@ -22,14 +22,14 @@ const Layout: React.FC = () => {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen flex overflow-x-hidden">
+    <div className="min-h-screen flex  overflow-x-hidden bg-gradient-to-br from-[#151515] via-[#211951] to-[#10375C]">
       {/* Left Sidebar (Navbar) */}
-      <div className="fixed top-0 left-0 h-full bg-white shadow-lg z-50">
+      <div className="mx-auto   h-full ">
         <Navbar />
       </div>
 
       {/* Main content with rotation animations */}
-      <div className="ml-[5%] flex-1">
+      <div className="md:mx-[3%] flex-1">
         <AnimatePresence mode="wait">
           <motion.main
             key={location.key}

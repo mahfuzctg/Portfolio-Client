@@ -5,13 +5,16 @@ import About from "../pages/About/About";
 import Blogs from "../pages/Blogs/Blogs";
 
 import BlogPage from "../pages/Dashboards/Blogs/BlogPage";
-import ProjectsPage from "../pages/Dashboards/Blogs/ProjectPage";
-import DashboardOverview from "../pages/Dashboards/DashboardOverview";
+
 import DashboardPage from "../pages/Dashboards/DashboardPage";
+import ProjectsPage from "../pages/Dashboards/Projects/ProjectPage";
+import SkillPage from "../pages/Dashboards/Skills/SkillPage";
 import Home from "../pages/Home/Home";
 import LoginPage from "../pages/Login/LoginPage";
 import NotFound from "../pages/NotFound/NotFound";
-import Skills from "../pages/Portfolio/Portfolio";
+
+import ContactPage from "../pages/Contact/ContactPage";
+import Portfolio from "../pages/Portfolio/Portfolio";
 import Projects from "../pages/Projects/Project";
 
 // PrivateRoute component
@@ -34,8 +37,9 @@ const AppRoutes: React.FC = () => {
         <Route index element={<Home />} /> {/* Default route for "/" */}
         <Route path="about" element={<About />} />
         <Route path="projects" element={<Projects />} />
-        <Route path="skills" element={<Skills />} />
+        <Route path="skills" element={<Portfolio />} />
         <Route path="blogs" element={<Blogs />} />
+        <Route path="contact" element={<ContactPage />} />
         <Route path="login" element={<LoginPage />} />
         {/* Protected Dashboard route */}
         <Route
@@ -47,9 +51,10 @@ const AppRoutes: React.FC = () => {
           }
         >
           {/* Nested Dashboard routes */}
-          <Route path="overview" element={<DashboardOverview />} />
+
           <Route path="project-page" element={<ProjectsPage />} />
           <Route path="blog-page" element={<BlogPage />} />
+          <Route path="skill-page" element={<SkillPage />} />
         </Route>
         {/* Catch-all route for 404 */}
         <Route path="*" element={<NotFound />} />

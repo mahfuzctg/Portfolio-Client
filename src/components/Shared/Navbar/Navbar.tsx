@@ -4,7 +4,6 @@ import {
   FaEnvelope,
   FaHome,
   FaProjectDiagram,
-  FaSignInAlt,
   FaTachometerAlt,
   FaTools,
   FaUser,
@@ -16,107 +15,100 @@ const Navbar: React.FC = () => {
   const isLoggedIn = !!localStorage.getItem("authToken");
 
   return (
-    <nav className="fixed md:left-0 md:top-0 md:h-full md:w-[5%] w-full top-0 bg-white shadow-md">
-      <div className="flex md:flex-col flex-row md:justify-center justify-start items-center md:my-auto md:py-4 py-2">
-        <div className="flex md:flex-col flex-row md:space-y-6 space-x-6 md:space-x-0">
-          {/* Home Link */}
+    <nav className="fixed top-0 left-0 right-0 mx-auto md:left-0 md:right-auto md:my-auto md:h-[95%] flex justify-center items-center">
+      <div className="flex md:flex-col items-center justify-center rounded-lg">
+        {/* Home Link */}
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#F4F6FF] bg-[#1e2a47] p-3 rounded-full hover:bg-[#314376] transition-colors"
+              : "text-[#F4F6FF] hover:text-[#F4F6FF] hover:bg-[#1e2a47] p-3 rounded-full transition-colors"
+          }
+          title="Home"
+        >
+          <FaHome className="h-5 w-5" />
+        </NavLink>
+
+        {/* About Link */}
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#F4F6FF] bg-[#1e2a47] p-3 rounded-full hover:bg-[#314376] transition-colors"
+              : "text-[#F4F6FF] hover:text-[#F4F6FF] hover:bg-[#1e2a47] p-3 rounded-full transition-colors"
+          }
+          title="About"
+        >
+          <FaUser className="h-5 w-5" />
+        </NavLink>
+
+        {/* Projects Link */}
+        <NavLink
+          to="/projects"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#F4F6FF] bg-[#1e2a47] p-3 rounded-full hover:bg-[#314376] transition-colors"
+              : "text-[#F4F6FF] hover:text-[#F4F6FF] hover:bg-[#1e2a47] p-3 rounded-full transition-colors"
+          }
+          title="Projects"
+        >
+          <FaProjectDiagram className="h-5 w-5" />
+        </NavLink>
+
+        {/* Blogs Link */}
+        <NavLink
+          to="/blogs"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#F4F6FF] bg-[#1e2a47] p-3 rounded-full hover:bg-[#314376] transition-colors"
+              : "text-[#F4F6FF] hover:text-[#F4F6FF] hover:bg-[#1e2a47] p-3 rounded-full transition-colors"
+          }
+          title="Blogs"
+        >
+          <FaBlog className="h-5 w-5" />
+        </NavLink>
+
+        {/* Skills Link */}
+        <NavLink
+          to="/skills"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#F4F6FF] bg-[#1e2a47] p-3 rounded-full hover:bg-[#314376] transition-colors"
+              : "text-[#F4F6FF] hover:text-[#F4F6FF] hover:bg-[#1e2a47] p-3 rounded-full transition-colors"
+          }
+          title="Skills"
+        >
+          <FaTools className="h-5 w-5" />
+        </NavLink>
+
+        {/* Contact Link */}
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#F4F6FF] bg-[#1e2a47] p-3 rounded-full hover:bg-[#314376] transition-colors"
+              : "text-[#F4F6FF] hover:text-[#F4F6FF] hover:bg-[#1e2a47] p-3 rounded-full transition-colors"
+          }
+          title="Contact"
+        >
+          <FaEnvelope className="h-5 w-5" />
+        </NavLink>
+
+        {/* Dashboard Link (Visible only for logged-in users) */}
+        {isLoggedIn && (
           <NavLink
-            to="/"
+            to="/dashboard"
             className={({ isActive }) =>
               isActive
-                ? "text-pink-600 bg-pink-100 p-2 rounded-full hover:bg-pink-200 transition-colors"
-                : "text-pink-600 hover:text-pink-600 hover:bg-pink-100 p-2 rounded-full transition-colors"
+                ? "text-[#F4F6FF] bg-[#1e2a47] p-3 rounded-full hover:bg-[#314376] transition-colors"
+                : "text-[#F4F6FF] hover:text-[#F4F6FF] hover:bg-[#1e2a47] p-3 rounded-full transition-colors"
             }
+            title="Dashboard"
           >
-            <FaHome className="md:h-6 md:w-6 h-4 w-4" />
+            <FaTachometerAlt className="h-5 w-5" />
           </NavLink>
-
-          {/* About Link */}
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              isActive
-                ? "text-pink-600 bg-pink-100 p-2 rounded-full hover:bg-pink-200 transition-colors"
-                : "text-pink-600 hover:text-pink-600 hover:bg-pink-100 p-2 rounded-full transition-colors"
-            }
-          >
-            <FaUser className="md:h-6 md:w-6 h-4 w-4" />
-          </NavLink>
-
-          {/* Projects Link */}
-          <NavLink
-            to="/projects"
-            className={({ isActive }) =>
-              isActive
-                ? "text-pink-600 bg-pink-100 p-2 rounded-full hover:bg-pink-200 transition-colors"
-                : "text-pink-600 hover:text-pink-600 hover:bg-pink-100 p-2 rounded-full transition-colors"
-            }
-          >
-            <FaProjectDiagram className="md:h-6 md:w-6 h-4 w-4" />
-          </NavLink>
-
-          {/* Blogs Link */}
-          <NavLink
-            to="/blogs"
-            className={({ isActive }) =>
-              isActive
-                ? "text-pink-600 bg-pink-100 p-2 rounded-full hover:bg-pink-200 transition-colors"
-                : "text-pink-600 hover:text-pink-600 hover:bg-pink-100 p-2 rounded-full transition-colors"
-            }
-          >
-            <FaBlog className="md:h-6 md:w-6 h-4 w-4" />
-          </NavLink>
-
-          {/* Skills Link */}
-          <NavLink
-            to="/skills"
-            className={({ isActive }) =>
-              isActive
-                ? "text-pink-600 bg-pink-100 p-2 rounded-full hover:bg-pink-200 transition-colors"
-                : "text-pink-600 hover:text-pink-600 hover:bg-pink-100 p-2 rounded-full transition-colors"
-            }
-          >
-            <FaTools className="md:h-6 md:w-6 h-4 w-4" />
-          </NavLink>
-
-          {/* Contact Link */}
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              isActive
-                ? "text-pink-600 bg-pink-100 p-2 rounded-full hover:bg-pink-200 transition-colors"
-                : "text-pink-600 hover:text-pink-600 hover:bg-pink-100 p-2 rounded-full transition-colors"
-            }
-          >
-            <FaEnvelope className="md:h-6 md:w-6 h-4 w-4" />
-          </NavLink>
-
-          {/* Dashboard Link (Visible only for logged-in users) */}
-          {isLoggedIn && (
-            <NavLink
-              to="/dashboard"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-pink-600 bg-pink-100 p-2 rounded-full hover:bg-pink-200 transition-colors"
-                  : "text-pink-600 hover:text-pink-600 hover:bg-pink-100 p-2 rounded-full transition-colors"
-              }
-            >
-              <FaTachometerAlt className="md:h-6 md:w-6 h-4 w-4" />
-            </NavLink>
-          )}
-
-          {/* Login Link */}
-          <NavLink
-            to="/login"
-            className={({ isActive }) =>
-              isActive
-                ? "text-pink-600 bg-pink-100 p-2 rounded-full hover:bg-pink-200 transition-colors"
-                : "text-pink-600 hover:text-pink-600 hover:bg-pink-100 p-2 rounded-full transition-colors"
-            }
-          >
-            <FaSignInAlt className="md:h-6 md:w-6 h-4 w-4" />
-          </NavLink>
-        </div>
+        )}
       </div>
     </nav>
   );

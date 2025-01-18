@@ -1,31 +1,25 @@
 import React from "react";
 
 interface SkillCardProps {
-  id: number | string;
-  skillName: string;
-  image: string | undefined;
+  skillName?: string;
+  image?: string;
 }
 
 const SkillCard: React.FC<SkillCardProps> = ({ skillName, image }) => {
   return (
-    <div className="flex justify-center items-center">
-      <div className="relative bg-gradient-to-t from-pink-600 to-pink-400 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group transform hover:scale-105 w-full sm:w-48 mx-auto">
-        {/* Image - circular with border, and smooth zoom effect on hover */}
-        <div className="flex justify-center items-center p-2">
-          <img
-            src={image}
-            alt={skillName}
-            className="w-20 h-20 object-cover rounded-full border-4 border-white transform transition-all duration-300 group-hover:scale-110"
-          />
-        </div>
-
-        {/* Skill Name - hidden by default, shown on hover */}
-        <div className="absolute inset-0 flex justify-center items-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-black bg-opacity-50 rounded-2xl">
-          <h3 className="text-2xl font-semibold text-white tracking-wider">
-            {skillName}
-          </h3>
-        </div>
-      </div>
+    <div className="relative group  mx-auto bg-gradient-to-br from-[#151515] via-[#211951] to-[#10375C] rounded-lg overflow-hidden shadow-lg w-24 h-24  flex items-center justify-center transform transition-all duration-300 ease-in-out hover:scale-105">
+      {/* Image */}
+      {image && (
+        <img
+          src={image}
+          alt={skillName}
+          className="w-16 h-16  rounded-full transition-all duration-300 ease-in-out group-hover:opacity-0"
+        />
+      )}
+      {/* Name */}
+      <h3 className="absolute inset-0 flex items-center justify-center text-lg font-semibold text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+        {skillName}
+      </h3>
     </div>
   );
 };

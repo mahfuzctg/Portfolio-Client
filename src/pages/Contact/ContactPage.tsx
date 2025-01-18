@@ -1,8 +1,8 @@
 import { FaEnvelope, FaPaperPlane } from "react-icons/fa";
 
-const ContactForm = () => {
+const ContactPage = () => {
   return (
-    <div className="bg-gradient-to-br from-[#151515] via-[#211951] to-[#10375C] p-8 rounded-lg shadow-lg mt-10 lg:mt-0 w-full max-w-lg mx-auto">
+    <div className="bg-gradient-to-br from-[#151515] via-[#211951] to-[#10375C] mt-20 p-8 rounded-lg shadow-lg   w-full max-w-lg mx-auto">
       <h2 className="text-center font-bold text-[#F4F6FF] flex items-center space-x-2">
         ✨<span>QUICK TOUCH</span>
       </h2>
@@ -61,4 +61,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default ContactPage;

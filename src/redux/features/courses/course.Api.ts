@@ -11,7 +11,7 @@ export const coursesApi = baseApi.injectEndpoints({
     // Fetch a specific course by ID
     getCourse: builder.query({
       query: (id) => `/courses/${id}`, // Matches the GET route for a specific course
-      providesTags: (result, error, id) => [{ type: "Course", id }],
+      providesTags: (_result, _error, id) => [{ type: "Course", id }],
     }),
 
     // Add a new course
@@ -33,7 +33,7 @@ export const coursesApi = baseApi.injectEndpoints({
         body: updatedCourse, // Sends updated course data
       }),
       // After updating a course, refetch the specific course data
-      invalidatesTags: (result, error, { id }) => [{ type: "Course", id }],
+      invalidatesTags: (_result, _error, { id }) => [{ type: "Course", id }],
     }),
 
     // Delete a course by ID

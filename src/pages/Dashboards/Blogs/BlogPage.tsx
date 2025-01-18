@@ -7,7 +7,7 @@ import UpdateBlogModal from "../../../components/Dashboard/Modals/UpdateBlogModa
 import { useGetBlogsQuery } from "../../../redux/features/blogs/blogsApi";
 
 const BlogPage: React.FC = () => {
-  const { data, isLoading, isError, error } = useGetBlogsQuery();
+  const { data, isLoading, isError, error } = useGetBlogsQuery(undefined);
   const [blogs, setBlogs] = useState<any[]>([]);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false); // Add state for the create modal

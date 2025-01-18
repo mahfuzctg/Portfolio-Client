@@ -11,7 +11,7 @@ export const blogsApi = baseApi.injectEndpoints({
     // Fetch a single blog by ID
     getBlogById: builder.query({
       query: (id: string) => `/blogs/${id}`,
-      providesTags: (result, error, id) => [{ type: "Blog", id }], // Provide a tag for the specific blog entry
+      providesTags: (_result, _error, id) => [{ type: "Blog", id }], // Provide a tag for the specific blog entry
     }),
 
     // Create a new blog
@@ -31,7 +31,7 @@ export const blogsApi = baseApi.injectEndpoints({
         method: "PUT",
         body: updatedBlog,
       }),
-      invalidatesTags: (result, error, { id }) => [{ type: "Blog", id }], // Invalidate cache for the updated blog entry
+      invalidatesTags: (_result, _error, { id }) => [{ type: "Blog", id }], // Invalidate cache for the updated blog entry
     }),
 
     // Delete a blog by ID
@@ -40,7 +40,7 @@ export const blogsApi = baseApi.injectEndpoints({
         url: `/blogs/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: (result, error, id) => [{ type: "Blog", id }], // Invalidate cache for the deleted blog entry
+      invalidatesTags: (_result, _error, id) => [{ type: "Blog", id }], // Invalidate cache for the deleted blog entry
     }),
   }),
 });
