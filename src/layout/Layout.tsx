@@ -3,32 +3,31 @@ import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/Shared/Navbar/Navbar";
 
-// Define the rotate animation
+// Define the fade-in and slide-up animation
 const pageVariants = {
-  initial: { opacity: 0, rotate: 180 }, // Start with the element rotated 180 degrees
-  animate: { opacity: 1, rotate: 0 }, // Rotate to 0 degrees (normal state)
-  exit: { opacity: 0, rotate: -180 }, // Rotate out in the opposite direction
+  initial: { opacity: 0, x: 50 }, // Start slightly lower
+  animate: { opacity: 1, x: 0 }, // Move to normal position
+  exit: { opacity: 0, y: 50 }, // Slide slightly up on exit
 };
 
-const rotateTransition = {
-  type: "spring",
-  stiffness: 70, // Lower stiffness for smoother rotation
-  damping: 20, // Lower damping for a more fluid effect
-  mass: 1, // Controls the weight of the animation, adding more natural movement
-  duration: 1, // Increase the duration for smoother motion
+const smoothTransition = {
+  type: "tween",
+  stiffness: 80,
+  damping: 15,
+  duration: 0.5,
 };
 
 const Layout: React.FC = () => {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen flex  overflow-x-hidden bg-gradient-to-br from-[#151515] via-[#211951] to-[#10375C]">
+    <div className="min-h-screen flex overflow-x-hidden bg-gradient-to-br from-[#151515] via-[#211951] to-[#10375C]">
       {/* Left Sidebar (Navbar) */}
-      <div className="mx-auto   h-full ">
+      <div className="mx-auto h-full">
         <Navbar />
       </div>
 
-      {/* Main content with rotation animations */}
+      {/* Main content with smooth animations */}
       <div className="md:mx-[3%] flex-1">
         <AnimatePresence mode="wait">
           <motion.main
@@ -37,7 +36,7 @@ const Layout: React.FC = () => {
             animate="animate"
             exit="exit"
             variants={pageVariants}
-            transition={rotateTransition}
+            transition={smoothTransition}
             className="h-full"
           >
             <Outlet /> {/* This renders the child routes */}

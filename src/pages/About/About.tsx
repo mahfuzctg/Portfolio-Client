@@ -10,7 +10,7 @@ const About: React.FC = () => {
         <div className="w-full lg:w-1/2 flex justify-center  relative mt-6 lg:mt-0">
           <div className="bg-gradient-to-br from-[#151515] via-[#211951] to-[#10375C] rounded-t-full rounded-b-lg w-64 h-96 md:w-72 md:h-80 lg:w-[400px] lg:h-[640px] flex items-center justify-center relative overflow-hidden">
             <video
-              src="/public/videos/Updated-Resume-Video.mp4"
+              src="/videos/Updated-Resume-Video.mp4"
               className="rounded-t-full w-full pt-10 md:pt-0 md:w-5/6   bg-gradient-to-b from-[#151515] via-[#211951] to-[#10375C]"
               autoPlay
               loop
