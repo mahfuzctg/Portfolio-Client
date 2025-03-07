@@ -87,7 +87,7 @@ const HomeBanner = () => {
           {/* Resume Download Button */}
           <div className="mt-8">
             <a
-              href="https://drive.google.com/file/d/1hbRkEeQxspmBI896kjK-ZX-Igq8mFd2M/view?usp=sharing"
+              href="https://drive.google.com/file/d/1vVIlz9MM4HWC8r1S0LMWvWFl5iUDOjl2/view?usp=drive_link"
               target="_blank" // This ensures the link opens in a new tab
               rel="noopener noreferrer" // Security measure for external links
               className="inline-flex items-center px-6 py-3 bg-[#F4F6FF] text-[#151515] rounded-full hover:bg-[#F4F6FF] transition-all"

@@ -17,7 +17,7 @@ const EducationCard: React.FC<EducationCardProps> = ({
   institution,
   degree,
   description,
-  link,
+
   image,
   year,
 }) => {
@@ -42,7 +42,7 @@ const EducationCard: React.FC<EducationCardProps> = ({
         {year && <p className="text-sm text-[#F4F6FF] mt-1">Year: {year}</p>}
         <p className="text-[#F4F6FF] mt-4 leading-relaxed">{description}</p>
         <a
-          href={link}
+          href={"https://darululoomhathazari.com"}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-6 inline-block text-[#F4F6FF] hover:text-pink-600 text-lg font-semibold transition-colors duration-200"
